@@ -21,9 +21,9 @@ function mostrarMensaje(mensaje, tipo) {
     if(!document.querySelector('.mensaje')){
         const div = document.createElement('div');
         if(tipo === 'error') {
-            div.classList.add('mensaje', 'error');
+            div.classList.add('mensaje', 'bg-red-100', 'border-red-400', 'text-red-700', 'px-4', 'py-3', 'rounded', 'max-w-lg', 'mt-6', 'text-center');
         }else {
-            div.classList.add('mensaje', 'correcto');
+            div.classList.add('mensaje', 'bg-green-100', 'border-green-400', 'text-green-700', 'px-4', 'py-3', 'rounded', 'max-w-lg', 'mt-6', 'text-center');
         }
         div.textContent = mensaje;
         inputs.insertBefore(div, inputTermino);
