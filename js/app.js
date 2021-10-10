@@ -15,6 +15,8 @@ function validarFormulario(e) {
         mostrarMensaje('El término de búsqueda es obligatorio', 'error');
         return;
     }
+
+    buscarImagenes(terminoBusqueda);
 };
 
 function mostrarMensaje(mensaje, tipo) {
@@ -31,4 +33,19 @@ function mostrarMensaje(mensaje, tipo) {
             document.querySelector('.mensaje').remove();
         }, 3000);
     }
+}
+
+function buscarImagenes(termino){
+    const key = '23715495-8d80aca1a7b327e04a0e101fe';
+    const url = `https://pixabay.com/api/?key=${key}&q=${termino}&image_type=photo`;
+    console.log(termino);
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => mostrarImagenes(data.hits));
+
+}
+
+function mostrarImagenes(imagenes) {
+    console.log(imagenes);
 }
