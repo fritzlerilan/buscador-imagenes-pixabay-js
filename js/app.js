@@ -3,6 +3,8 @@ const formulario = document.querySelector('#formulario');
 const inputs = document.querySelector('#inputs');
 const inputTermino = document.querySelector('#termino');
 
+const registrosPorPagina = 40;
+
 document.addEventListener('DOMContentLoaded', () => {
     formulario.addEventListener('submit', validarFormulario);
 });
@@ -41,7 +43,12 @@ function buscarImagenes(termino) {
 
     fetch(url)
         .then(response => response.json())
-        .then(data => mostrarImagenes(data.hits));
+        .then(data => {
+            console.log(data);
+            const totalPaginas = calcularPaginas(data.totalHits);
+            console.log(totalPaginas);
+            mostrarImagenes(data.hits)
+        });
 
 }
 
@@ -70,6 +77,10 @@ function mostrarImagenes(imagenes) {
     })
 }
 
+
+function calcularPaginas(total) {
+    return parseInt(Math.ceil( total / registrosPorPagina ));
+}
 function limpiarHTML() {
     while (resultado.firstChild) {
         resultado.removeChild(resultado.firstChild);
